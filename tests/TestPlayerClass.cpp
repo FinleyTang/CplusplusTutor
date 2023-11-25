@@ -3,9 +3,16 @@
 //
 #include "../ClassDemo/Player.h"
 #include <iostream>
+#include <string>
+
 void testPlayer(){
-    Player player =  Player(180.4, 88.9);
-    std::cout << player.getHeight() << std::endl;
+    std::string  name = "ftang";
+    auto player =  Player(name);
     player.setHeight(189.2);
+    player.setWeight(79.2);
+    std::cout<< player.getName()<<std::endl;
+    std::cout << player.getWeight() << std::endl;
     std::cout << player.getHeight() << std::endl;
+
+
 }

@@ -27,3 +27,11 @@ int height;
 在这个例子中，this->height明确指示要将参数height的值赋给类成员变量height，而不是将其赋给自身。
 
 总的来说，使用this->是一种显式、明确的方式来引用成员变量，以避免命名冲突。但在大多数情况下，直接使用变量名（height = h;）已经足够清晰，并且更加简洁。
+
+## Why must string variables be declared as "std: :string" and not "string" in C++?
+
+在C++中，使用"std::string"语法表示字符串类属于"std"命名空间，即C++标准库的标准命名空间。使用"std::string"语法显式地将字符串类标识为标准库的一部分，避免与其他库或用户定义的类型发生命名冲突。
+
+当你写"std::string"时，你正在指定"string"类是"std"命名空间的一部分，这有助于编译器理解你所指的"string"类。这一区别非常重要，因为不同命名空间或用户定义的代码中可能存在其他名为"string"的类型或类。
+
+通过使用"std::string"，你确保编译器准确知道你所指的"string"类是哪一个，避免潜在的命名冲突，并确保代码的清晰性。

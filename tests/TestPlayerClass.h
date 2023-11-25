@@ -1,0 +1,9 @@
+//
+// Created by ftang on 2023/11/25.
+//
+void  testPlayer();
+
+#ifndef CPLUSPLUSTUTOR_TESTPLAYERCLASS_H
+#define CPLUSPLUSTUTOR_TESTPLAYERCLASS_H
+
+#endif //CPLUSPLUSTUTOR_TESTPLAYERCLASS_H

@@ -2,6 +2,7 @@
 #include "hello/hello.h"
 #include "TestStatic.h"
 #include "ClassDemo/Player.h"
+#include "tests/TestPlayerClass.h"
 // 在类或结构体之外声明的 STATIC 意味着你声明的 static 只对该翻译单元可见，也就是说，只对与声明静态对象相同的 cpp 文件中的代码可见。
 // 这种情况下在main.cpp中也定义一个s_var是可行的
 //static  int s_var = 1;    //可行
@@ -22,10 +23,9 @@ int main() {
     //测试extern
     std::cout << s_var1<< std::endl;
 
-    Player player =  Player(180.4, 88.9);
-    std::cout << player.getHeight() << std::endl;
-    player.setHeight(189.2);
-    std::cout << player.getHeight() << std::endl;
+
+    testPlayer();
+
 
 
 

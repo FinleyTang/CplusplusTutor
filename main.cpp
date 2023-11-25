@@ -19,6 +19,9 @@ int main() {
 
     std::cout << s_var << std::endl;
 
+    //测试extern
+    std::cout << s_var1<< std::endl;
+
 
     return 0;
 }

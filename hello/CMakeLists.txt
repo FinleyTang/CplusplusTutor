@@ -1,1 +1,1 @@
-add_library(add hello.cpp)
+add_library(add hello.cpp StaticDemo.cpp)

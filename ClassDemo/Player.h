@@ -12,8 +12,8 @@ private:
     float weight;
 public:
     Player(float h, float w);
-    float getHeight();
-    float getWeight();
+    float getHeight() const;
+    float getWeight() const;
     void setHeight(float h);
     void setWeight(float w);
 

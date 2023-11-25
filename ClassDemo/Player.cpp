@@ -13,11 +13,11 @@ Player::Player(float h, float w) : height(h), weight(w) {
     // 构造函数体
 }
 
-float Player::getHeight() {
+float Player::getHeight() const {
     return height;
 }
 
-float Player::getWeight() {
+float Player::getWeight() const {
     return  weight;
 }
 

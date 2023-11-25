@@ -1,2 +1,2 @@
-add_library(test1 TestPlayerClass.cpp)
-target_link_libraries(test1 PlayerLib)
+add_library(tests_test1 TestPlayerClass.cpp)
+target_link_libraries(tests_test1 PlayerLib)

@@ -10,9 +10,9 @@
 //    this->weight = w;
 //}
 
-//Player::Player(float h, float w) : height(h), weight(w) {
-//    // 构造函数体
-//}
+Player::Player(float h, float w) : height(h), weight(w) { //参数化列表
+    // 构造函数体
+}
 
 float Player::getHeight() const {
     return height;
@@ -41,4 +41,11 @@ void Player::setAge(int a) {
 
 std::string Player::getName() {
     return name;
+}
+
+Player::Player() {
+    name = nullptr;
+    age = 0;
+    weight = 0.0;
+    height = 0.0;
 }

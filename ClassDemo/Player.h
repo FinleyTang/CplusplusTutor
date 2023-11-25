@@ -7,11 +7,15 @@
 
 class Player {
 private:
+
+
     float height;
     float weight;
     std::string name;
-    int age;
+    int age{};
 public:
+    Player();
+    Player(float h, float w);
     explicit Player(std::string name);
     float  getHeight() const;
     float getWeight() const;

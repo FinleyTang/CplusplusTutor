@@ -15,4 +15,11 @@ void testPlayer(){
     std::cout << player.getHeight() << std::endl;
 
 
+    auto* player1 = new Player("alic");
+    player1->setAge(18);
+    player1->setHeight(167);
+    player1->setWeight(100);
+    std::cout << player1->getName() << std::endl;
+    std::cout<< player1->getWeight()<<std::endl;
+
 }

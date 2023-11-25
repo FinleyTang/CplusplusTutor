@@ -3,7 +3,8 @@ project(CplusplusTutor)
 
 set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(hello)
-
+add_subdirectory(ClassDemo)
 
 add_executable(CplusplusTutor main.cpp TestStatic.cpp)
 target_link_libraries(CplusplusTutor add )
+target_link_libraries(CplusplusTutor PlayerLib)

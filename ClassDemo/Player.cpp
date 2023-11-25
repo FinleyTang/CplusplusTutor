@@ -4,9 +4,13 @@
 
 #include "Player.h"
 
-Player::Player(float h, float w) {
-    this->height = h;
-    this->weight = w;
+//Player::Player(float h, float w) {
+//    this->height = h;
+//    this->weight = w;
+//}
+
+Player::Player(float h, float w) : height(h), weight(w) {
+    // 构造函数体
 }
 
 float Player::getHeight() {

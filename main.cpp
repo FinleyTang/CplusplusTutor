@@ -6,6 +6,7 @@
 #include "tests/TestDerived.h"
 #include "tests/TestXmlParser.h"
 #include "tests/TestFileOperator.h"
+#include "tests/TestTemplate.h"
 extern  int s_var;
 
 int main() {
@@ -15,8 +16,8 @@ int main() {
 //    testCString();
 //    testShape();
 //    testParseXML();
-    test_file_read_by_line();
-    test_file_write();
-
+//    test_file_read_by_line();
+//    test_file_write();
+    test_template_func();
     return 0;
 }

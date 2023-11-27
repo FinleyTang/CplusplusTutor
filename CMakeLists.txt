@@ -7,6 +7,7 @@ add_subdirectory(ClassDemo)
 add_subdirectory(tests)
 add_subdirectory(derived-class)
 add_subdirectory(xmlParse)
+add_subdirectory(template-demo)
 
 add_executable(CplusplusTutor main.cpp)
 

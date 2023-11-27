@@ -35,3 +35,43 @@ int height;
 当你写"std::string"时，你正在指定"string"类是"std"命名空间的一部分，这有助于编译器理解你所指的"string"类。这一区别非常重要，因为不同命名空间或用户定义的代码中可能存在其他名为"string"的类型或类。
 
 通过使用"std::string"，你确保编译器准确知道你所指的"string"类是哪一个，避免潜在的命名冲突，并确保代码的清晰性。
+
+## readfile 
+```shell
+void test_file_read_by_line(){
+    std::string line;
+    std::ifstream infile("C:\\Users\\ftang\\CLionProjects\\CplusplusTutor\\tests\\CMakeLists.txt");
+    while (std::getline(infile, line)) {
+        std::cout << line << std::endl;
+    }
+}
+
+```
+结果如下：
+![](2023-11-27%20215908.png)
+
+## WriteFile
+```c++
+char*  str = "hello ofstream!\n";
+outfile.write(str, 16);
+outfile << "c++ style " <<std::endl;
+```
+这两种写法都可以用于将数据写入文件，但使用的方法有所不同。
+
+**write() 函数：**
+
+`char* str = "hello ofstream!\n";
+outfile.write(str, 16);`
+这个写法使用了 write() 函数，该函数接受一个指向字符数组的指针和要写入的字节数。在这个例子中，我们将字符串 "hello ofstream!\n" 写入文件，并指定写入的字节数为 16。如果字符串的长度小于 16，write() 函数将只写入字符串的一部分。
+
+**<< 运算符：**
+
+
+`outfile << "c++ style " << std::endl;`
+这个写法使用了 << 运算符，它是 C++ 中流操作符的一种重载形式。这种写法更加简洁和直观，可以像向标准输出流 (std::cout) 输出数据一样，连续使用 << 运算符将数据写入文件。在这个例子中，我们依次写入字符串 "c++ style " 和换行符 std::endl。
+
+无论使用哪种写法，当你完成文件写入操作后，记得关闭文件以确保数据被正确地写入到文件中。例如：
+
+
+`outfile.close();`
+请注意，第二种写法使用 std::ofstream 类的对象 outfile 来进行输出操作，而第一种写法使用的是 C 风格的字符指针。建议使用 C++ 的字符串类 std::string 来操作字符串，以更好地利用 C++ 的特性和避免潜在的问题。

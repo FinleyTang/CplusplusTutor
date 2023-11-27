@@ -1,0 +1,150 @@
+<rule_sql_inject group="rule">
+    <item check_cookie="0" check_post="0" check_url="0" check_ua="0" id="100">
+        <rule><![CDATA[(;|'|\)|\d|\s)+(and|xor|or|having|\(?\s*case\s+when)(\s|\(|!)+.*(=|<|>|like).*]]></rule>
+        <description><![CDATA[防止简单的and or 方式注入]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="0" check_ua="0" id="101">
+        <rule><![CDATA[(;|'|\)|\d|\s)+(and|or|xor|having|\(?\s*case\s+when)(\s|!|\()+!*(false|true|\d+)\b]]></rule>
+        <description><![CDATA[防止复杂的and or 方式注入规则]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="102">
+        <rule><![CDATA[\bselect\b\s+(.)*(system_user\(\s*\)|host_name\(\s*\)|user_name\(\s*\)|user\(\s*\)|current_user\(\s*\)|session_user\(\s*\)|@@servername|@@basedir|@@global\.version_compile_os)]]></rule>
+        <description><![CDATA[查询服务器相关信息防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="103">
+        <rule><![CDATA[\bselect\b\s+(.)*(IS_SRVROLEMEMBER\(.+\)|IS_MEMBER\(.+\)|HAS_DBACCESS\(.+\))]]></rule>
+        <description><![CDATA[SQL Server数据库做权限判断操作防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="104">
+        <rule><![CDATA[\bselect\b\s*(.)*(@@version|version|db_name\(\s*\)|database\(\s*\))]]></rule>
+        <description><![CDATA[查询数据库相关信息防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="105">
+        <rule><![CDATA[\bshow\b.*\b(columns\b\s+(\b|[\d])from|table|database)\b.*]]></rule>
+        <description><![CDATA[查看MySQL数据库信息防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="106">
+        <rule><![CDATA[\bshow\b\s+\b(grants|.*\bprocesslist|privileges)\b.*]]></rule>
+        <description><![CDATA[查看MySQL数据库的系统进程和权限防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="107">
+        <rule><![CDATA[\binsert\b\s+(\binto\b){0,1}\s+.*\b(values|set)\b.*]]></rule>
+        <description><![CDATA[对数据库进行数据插入操作防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="108">
+        <rule><![CDATA[\bBULK\b\s+\bINSERT\b.*(\b|[\d])from\b.*\bwith\b.*]]></rule>
+        <description><![CDATA[本地或远程的数据文件批量导入到SQL Server数据库中防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="109">
+        <rule><![CDATA[\bselect\b.*(\b|[\d])(from|benchmark|into)\b.*]]></rule>
+        <description><![CDATA[对数据库进行数据查询操作防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="110">
+        <rule><![CDATA[(;|'|\)|\d|\s)+(and|xor|or|having)\s+(sleep\s*\(\d+\)|benchmark\s*\([\S\s]+\))]]></rule>
+        <description><![CDATA[基于时间的注入判断防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="111">
+        <rule><![CDATA[\b(create|drop|backup)\b\s+\bdatabase\b\s+\w*]]></rule>
+        <description><![CDATA[对数据库进行创建、删除、备份操作防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="112">
+        <rule><![CDATA[\b(drop|truncate|create)\b\s+\btable\b\s+\w*]]></rule>
+        <description><![CDATA[对数据库进行删除、创建表操作防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="113">
+        <rule><![CDATA[\b(create|drop)\b\s+\bfunction\b\s+\w*]]></rule>
+        <description><![CDATA[创建或者删除函数防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="1" check_url="1" check_ua="0" id="114">
+        <rule><![CDATA[.*(union|union\s+(all|distinct|distinctrow))(\s|\d|\()+select\b.*]]></rule>
+        <description><![CDATA[SQL联合查询防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="115">
+        <rule><![CDATA[\b(create|drop)\b\s+\buser\b\s+\w*]]></rule>
+        <description><![CDATA[创建或者删除Mysql用户防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="116">
+        <rule><![CDATA[\bupdate\b\s+.*\s+\bset\b\s+.*=.*]]></rule>
+        <description><![CDATA[对数据库进行数据修改操作防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="117">
+        <rule><![CDATA[\bselect\b\s+\b(cast|convert)\b.*]]></rule>
+        <description><![CDATA[数据库类型转换防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="0" check_ua="0" id="118">
+        <rule><![CDATA[(\b|\d)(concat|group_concat)\(.*from.*]]></rule>
+        <description><![CDATA[MySQL特征恶意利用防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="1" check_url="1" check_ua="0" id="119">
+        <rule><![CDATA[\bdelete\b\s+(\b|[\d])from\b\s+.*]]></rule>
+        <description><![CDATA[对数据库进行数据删除操作防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="120">
+        <rule><![CDATA[\bmyappadmin\.adduser\(.+,.+\)]]></rule>
+        <description><![CDATA[执行用户函数或者用户包里的函数防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="121">
+        <rule><![CDATA[\bselect\b\s+\bload_file\b.*]]></rule>
+        <description><![CDATA[利用MySql数据库读取文件防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="122">
+        <rule><![CDATA[\bgrant\b.*\bon\b.*\bto\b.*]]></rule>
+        <description><![CDATA[数据库授权操作防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="123">
+        <rule><![CDATA[\balter\b.*\bdatabase\b.*]]></rule>
+        <description><![CDATA[修改数据库防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="124">
+        <rule><![CDATA[\bwaitfor\s+delay\b.*]]></rule>
+        <description><![CDATA[MSSQL或Mysql基于时间的注入判断防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="125">
+        <rule><![CDATA[\bcopy\b[\(|'|"|\s]+.*\b(to|from)\b]]></rule>
+        <description><![CDATA[文件复制防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="126">
+        <rule><![CDATA[\bpg_sleep\(\d+\)]]></rule>
+        <description><![CDATA[PostgreSQL数据库基于时间的注入判断防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="0" check_url="1" check_ua="0" id="127">
+        <rule><![CDATA[\bdeclare\b\s+.+]]></rule>
+        <description><![CDATA[注入存储过程防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="0" check_url="1" check_ua="0" id="128">
+        <rule><![CDATA[\bexec\b(\s+|\(.+\)).+]]></rule>
+        <description><![CDATA[非法执行命令防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="129">
+        <rule><![CDATA[WFXSSProbe]]></rule>
+        <description><![CDATA[特殊关键字查询防护]]></description>
+    </item>
+    <item check_cookie="1" check_post="0" check_url="1" check_ua="0" id="130">
+        <rule><![CDATA[\bdbo\.\w+]]></rule>
+        <description><![CDATA[数据库系统的存储过程被执行防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="131">
+        <rule><![CDATA[delete\s*\S*]]></rule>
+        <description><![CDATA[防止对数据库进行删除操作(SQLSERVER)]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="132">
+        <rule><![CDATA[\border\s+by\b]]></rule>
+        <description><![CDATA[防止对数据库进行排序测试]]></description>
+    </item>
+    <item check_cookie="0" check_post="1" check_url="1" check_ua="0" id="133">
+        <rule><![CDATA[\bupdatexml\s*\(|\bextractvalue\s*\(]]></rule>
+        <description><![CDATA[禁止使用updatexm和extractvalue函数]]></description>
+    </item>
+    <item check_cookie="0" check_post="1" check_url="1" check_ua="0" id="134">
+        <rule><![CDATA[HIGH_RISK_OPERATION:0]]></rule>
+        <description><![CDATA[数据库注释注入防护]]></description>
+    </item>
+    <item check_cookie="0" check_post="0" check_url="1" check_ua="0" id="135">
+        <rule><![CDATA[/\* .*?\*/]]></rule>
+        <description><![CDATA[数据库注释注入防护2]]></description>
+    </item>
+    <item check_cookie="0" check_post="1" check_ua="1" check_url="0" id="136">
+        <description><![CDATA[MSSQL命令执行和信息收集防护]]></description>
+        <rule><![CDATA[(?:[\\\'"`](?:;?\s*?(?:having|select|union)\b\s*?[^\s]|\s*?!\s*?[\\\'"\w])|(?:c(?:onnection_id|urrent_user)|database)\s*?\([^\)]*?|u(?:nion(?:[\w(\s]*?select| select @)|ser\s*?\([^\)]*?)|s(?:chema\s*?\([^\)]*?|elect.*?\w?user\()|into[\s+]+(?:dump|out)file\s*?[\\\'`]|\\s*?exec(?:ute)?.*?\\Wxp_cmdshell|from\\W+information_schema\\W|exec(?:ute)?\\s+master\\.|\\wiif\\s*?\\())]]></rule>
+    </item>
+</rule_sql_inject>

@@ -47,12 +47,12 @@ void testCString(){
     printf("=====================testCString=======================\n");
 //    Declaring a C-string variable
 //    Initializing a C-string variable
-    char str1[11] = "call home!";
+    char str1[20] = "call home!";
     char str2[] = "send money ";
     char str3[] ={'O','K','\0'}; //char str3[] = "OK";
 //    Assigning to a C-string variable
     strcat(str1, str2); //将 str2 追加到 str1 的末尾  //
-    printf("str1: %s", str1);
+    printf("str1: %s\n", str1);
     // 运行后发生： Process finished with exit code -1073741819 (0xC0000005) 实际是
     // 该异常代号对应“访问冲突”，即内存的读写权限冲突。
     //

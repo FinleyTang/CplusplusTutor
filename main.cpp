@@ -4,6 +4,7 @@
 #include "tests/TestPlayerClass.h"
 #include "tests/TestString.h"
 #include "tests/TestDerived.h"
+#include "tests/TestXmlParser.h"
 extern  int s_var;
 
 int main() {
@@ -12,5 +13,7 @@ int main() {
     testString();
     testCString();
     testShape();
+    testParseXML();
+
     return 0;
 }

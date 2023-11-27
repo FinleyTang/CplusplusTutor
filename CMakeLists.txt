@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(ClassDemo)
 add_subdirectory(tests)
 add_subdirectory(derived-class)
-
+add_subdirectory(xmlParse)
 
 add_executable(CplusplusTutor main.cpp)
 

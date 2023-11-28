@@ -137,3 +137,13 @@ std::cout << "Sum: " << sum1 << std::endl;
 如果你写成T Pair::getFirst()，这样的语法会让编译器误解成Pair类有一个名为getFirst的静态成员函数，而不是一个模板类的成员函数。因此，编译器会报错，因为它无法找到非静态成员函数getFirst的定义。
 
 另外，假设Pair是一个模板类，那么T Pair::getFirst()也无法体现出getFirst函数的返回类型是由模板类Pair的类型参数决定的这一特点。
+
+
+## 运算符重载
+
+重载比较好的文章
+https://blog.csdn.net/Mo3328679412/article/details/132754315
+
+
+
+

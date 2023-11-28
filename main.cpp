@@ -19,5 +19,6 @@ int main() {
 //    test_file_read_by_line();
 //    test_file_write();
     test_template_func();
+    test_template_class();
     return 0;
 }

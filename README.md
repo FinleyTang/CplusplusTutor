@@ -75,3 +75,65 @@ outfile.write(str, 16);`
 
 `outfile.close();`
 请注意，第二种写法使用 std::ofstream 类的对象 outfile 来进行输出操作，而第一种写法使用的是 C 风格的字符指针。建议使用 C++ 的字符串类 std::string 来操作字符串，以更好地利用 C++ 的特性和避免潜在的问题。
+
+
+## 模版函数
+
+add.h:
+
+```c++
+
+#ifndef ADD_H
+#define ADD_H
+
+template <typename T>
+T add(T num1, T num2);
+
+#include "add.cpp"  // 包含模板函数的实现文件
+
+#endif  // ADD_H
+```
+add.cpp:
+
+```c++
+template <typename T>
+T add(T num1, T num2){
+return  num1 + num2;
+}
+```
+
+main.cpp:
+
+```c++
+#include <iostream>
+#include "add.h"  // 包含头文件即可
+
+int main() {
+int sum1 = add(5, 10);
+std::cout << "Sum: " << sum1 << std::endl;
+
+    double sum2 = add(2.5, 1.8);
+    std::cout << "Sum: " << sum2 << std::endl;
+
+    return 0;
+}
+```
+
+需要注意的是：这里写法和正常的写法不一样，add.cpp这里不能include "add.h"; 而add.h中反而要include add.cpp
+
+通常情况下，模板的声明和定义会放在一起，都包含在头文件中。这样做有利于代码的可读性和维护性，并且也符合通常的编程实践。
+
+在C++中，模板类和函数通常会同时包含在头文件中，而不像普通类或函数那样分成声明和定义两部分。这是因为模板的特殊性，需要在编译时生成实际的代码，所以编译器需要访问模板的定义以便实例化出相应的代码。
+
+因此，通常情况下，模板类和函数的声明和定义会放在同一个头文件中，然后其他源文件可以直接包含该头文件来使用模板。这样可以确保模板实例化时能够正确展开模板定义的部分。
+
+## C++ 中T Pair<T>::getFirst()  这里为什么要写成Pair<T> 为什么不这么写呢T Pair::getFirst()  
+在C++中，Pair<T>是一个模板类，T是类型参数。通过在类名后面加上尖括号和类型参数，可以将类模板实例化为具体的类型。
+
+在定义成员函数getFirst()时，需要指定返回类型，这里的返回类型是T。由于Pair类是一个模板类，它的类型参数是T，因此需要在类名后面加上尖括号和类型参数<T>，以表示当前成员函数属于Pair<T>这个具体的实例化类型。
+
+所以，Pair<T>::getFirst()的写法是为了明确指定getFirst()函数是属于Pair<T>这个模板类实例化后的具体类型的成员函数。
+
+如果你写成T Pair::getFirst()，这样的语法会让编译器误解成Pair类有一个名为getFirst的静态成员函数，而不是一个模板类的成员函数。因此，编译器会报错，因为它无法找到非静态成员函数getFirst的定义。
+
+另外，假设Pair是一个模板类，那么T Pair::getFirst()也无法体现出getFirst函数的返回类型是由模板类Pair的类型参数决定的这一特点。

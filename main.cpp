@@ -8,6 +8,7 @@
 #include "tests/TestFileOperator.h"
 #include "tests/TestTemplate.h"
 #include "tests/testOpOVerride.h"
+#include "tests/TestSTL.h"
 extern  int s_var;
 
 int main() {
@@ -19,8 +20,11 @@ int main() {
 //    testParseXML();
 //    test_file_read_by_line();
 //    test_file_write();
-    test_template_func();
-    test_template_class();
-    test_Operator_override();
+//    test_template_func();
+//    test_template_class();
+//    test_Operator_override();
+      test_vector();
+      test_list();
+      test_deque();
     return 0;
 }
